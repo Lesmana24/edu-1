@@ -1,58 +1,304 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Portfolio Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+        
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-item a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 3rem;
+            background: linear-gradient(45deg, #e0f7fa, #b2ebf2);
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #455a64;
+        }
+        
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: #d91a6d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* About Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-title p {
+            color: #607d8b;
+            font-size: 1.1rem;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 0 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .about-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 3rem;
+            background-color: #e8f4f8;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .portfolio-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-info h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
-<body bgcolor="lightblue">
-    <!-- Section 1: Menu -->
-    <table border="1" width="100%">
-        <tr>
-            <td align="center"><a href="#home">Header</a></td>
-            <td align="center"><a href="#about">Biodata</a></td>
-            <td align="center"><a href="#portfolio">Portfolio</a></td>
-            
-        </tr>
-    </table>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-item">
+            <a href="#home">Home</a>
+        </div>
+        <div class="nav-item">
+            <a href="#about">Biodata</a>
+        </div>
+        <div class="nav-item">
+            <a href="#portfolio">Portfolio</a>
+        </div>
+    </nav>
     
-    <!-- Section 2: Judul dan Gambar -->
-    <table border="1" width="100%" height="200">
-        <tr>
-            <td align="left" width="50%">
-                <h1>Selamat datang di website saya</h1>
-            <p>Ini adalah contoh header dengan dua kolom</p>
-            <button>Pelajari lebih lanjut</button>
-            </td>
-            <td align="center" width="50%"><img src="image.jpg" alt="Gambar" width="200"></td>
-        </tr>
-    </table>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Selamat Datang di Website Saya</h1>
+            <p>Halo! Saya seorang profesional kreatif dengan passion di bidang desain dan pengembangan web. Mari berkolaborasi untuk menciptakan sesuatu yang menakjubkan!</p>
+            <a href="#about" class="btn">Pelajari Lebih Lanjut</a>
+        </div>
+        <div class="hero-image">
+            <img src="img.png" alt="Profile Picture">
+        </div>
+    </section>
     
-    <!-- Section 3: Biodata dengan 6 Box -->
-    <table border="1" width="100%">
-        <tr>
-            <td colspan="3" align="center"><h3>About</h3>
-            <p>A brief Introduction About Myself</p></td>
-        </tr>
-        <tr>
-            <td>Full Name</td>
-            <td>Education</td>
-            <td>Pekerjaan</td>
-        </tr>
-        <tr>
-            <td>Contact</td>
-            <td>Hobi</td>
-            <td>Alamat</td>
-        </tr>
-    </table>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-title">
+            <h3>About Me</h3>
+            <p>A brief introduction about myself</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-card">
+                <h4>Full Name</h4>
+                <p>Lesmana Adhi Kusuma</p>
+            </div>
+            <div class="about-card">
+                <h4>Education</h4>
+                <p>D3 Teknik Informatika</p>
+            </div>
+            <div class="about-card">
+                <h4>Pekerjaan</h4>
+                <p>Web Developer</p>
+            </div>
+            <div class="about-card">
+                <h4>Contact</h4>
+                <p>lesmana24@student.polindra.ac.id</p>
+            </div>
+            <div class="about-card">
+                <h4>Hobbies</h4>
+                <p>Photography, Hiking, Coding</p>
+            </div>
+            <div class="about-card">
+                <h4>Address</h4>
+                <p>Kuningan, Jawa Barat</p>
+            </div>
+        </div>
+    </section>
     
-    <!-- Section 4: Portofolio -->
-    <table border="1" width="100%">
-        <tr>
-            <td colspan="2" align="center"><h3>Portofolio</h3></td>
-        </tr>
-        <tr>
-            <td align="center" width="50%"><img src="portfolio1.jpg" alt="Project 1" width="200"></td>
-            <td align="center" width="50%"><img src="portfolio2.jpg" alt="Project 2" width="200"></td>
-        </tr>
-    </table>
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-title">
+            <h3>My Portfolio</h3>
+            <p>Some of my recent works</p>
+        </div>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Project 1" class="portfolio-image">
+                <div class="portfolio-info">
+                    <h4>E-commerce Website</h4>
+                    <p>A fully responsive online store with payment integration</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Project 2" class="portfolio-image">
+                <div class="portfolio-info">
+                    <h4>Mobile App Design</h4>
+                    <p>UI/UX design for a fitness tracking application</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
 </body>
 </html>
