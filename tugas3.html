@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio with Bootstrap</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Navbar Custom */
+        .navbar-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+        }
+        
+        .navbar-custom .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(45deg, #e0f7fa, #b2ebf2);
+            padding: 5rem 0;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        /* About Cards */
+        .about-card {
+            border-top: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            height: 100%;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Portfolio */
+        .portfolio-section {
+            background-color: #e8f4f8;
+            padding: 3rem 0;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .portfolio-item {
+            overflow: hidden;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-info h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Button Custom */
+        .btn-custom {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background-color: #d91a6d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+        
+        /* Footer */
+        .footer-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        /* Section Title */
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-title p {
+            color: #607d8b;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MyPortfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <h1 class="fw-bold mb-3">Selamat Datang di Website Saya</h1>
+                    <p class="lead mb-4">Halo! Saya seorang profesional kreatif dengan passion di bidang desain dan pengembangan web. Mari berkolaborasi untuk menciptakan sesuatu yang menakjubkan!</p>
+                    <button class="btn btn-custom btn-lg mb-3 me-2" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                        <i class="fas fa-info-circle me-2"></i>Pelajari Lebih Lanjut
+                    </button>
+                    <a href="#portfolio" class="btn btn-outline-primary btn-lg mb-3">
+                        <i class="fas fa-briefcase me-2"></i>Portfolio Saya
+                    </a>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1 text-center mb-4 mb-lg-0">
+                    <img src="img.png" alt="Profile Picture" class="profile-img img-fluid rounded-circle">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <div class="text-center mb-5 section-title">
+                <h3>About Me</h3>
+                <p>A brief introduction about myself</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-card">
+                        <h4><i class="fas fa-user me-2"></i>Full Name</h4>
+                        <p>Lesmana Adhi Kusuma</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-card">
+                        <h4><i class="fas fa-graduation-cap me-2"></i>Education</h4>
+                        <p>D3 Teknik Informatika</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-card">
+                        <h4><i class="fas fa-briefcase me-2"></i>Pekerjaan</h4>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-card">
+                        <h4><i class="fas fa-envelope me-2"></i>Contact</h4>
+                        <p>lesmana24@student.polindra.ac.id</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-card">
+                        <h4><i class="fas fa-heart me-2"></i>Hobbies</h4>
+                        <p>Photography, Hiking, Coding</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="about-card">
+                        <h4><i class="fas fa-map-marker-alt me-2"></i>Address</h4>
+                        <p>Kuningan, Jawa Barat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="container">
+            <div class="text-center mb-5 section-title">
+                <h3>My Portfolio</h3>
+                <p>Some of my recent works</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Project 1" class="portfolio-img">
+                        <div class="portfolio-info">
+                            <h4>E-commerce Website</h4>
+                            <p>A fully responsive online store with payment integration</p>
+                            <button class="btn btn-sm btn-custom mt-2" data-bs-toggle="modal" data-bs-target="#project1Modal">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Project 2" class="portfolio-img">
+                        <div class="portfolio-info">
+                            <h4>Mobile App Design</h4>
+                            <p>UI/UX design for a fitness tracking application</p>
+                            <button class="btn btn-sm btn-custom mt-2" data-bs-toggle="modal" data-bs-target="#project2Modal">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 My Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">About Me</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <img src="img.png" alt="Profile Picture" class="rounded-circle" width="120">
+                    </div>
+                    <h4 class="text-center mb-3">Lesmana Adhi Kusuma</h4>
+                    <p>Saya adalah seorang Web Developer dengan latar belakang pendidikan D3 Teknik Informatika. Saya memiliki pengalaman dalam mengembangkan berbagai jenis website dan aplikasi web.</p>
+                    <p>Keahlian utama saya meliputi:</p>
+                    <ul>
+                        <li>Front-end Development (HTML, CSS, JavaScript)</li>
+                        <li>Back-end Development (PHP, MySQL)</li>
+                        <li>Responsive Web Design</li>
+                        <li>UI/UX Design</li>
+                    </ul>
+                    <p>Saya berasal dari Kuningan, Jawa Barat dan memiliki hobi photography, hiking, dan tentu saja coding.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#contact" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Contact Me</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom">Send Message</button>
+                    </form>
+                    <hr class="my-4">
+                    <h6 class="mb-3">Or contact me directly:</h6>
+                    <p><i class="fas fa-envelope me-2"></i> lesmana24@student.polindra.ac.id</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Kuningan, Jawa Barat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 1 Modal -->
+    <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project1ModalLabel">E-commerce Website</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="img-fluid rounded mb-4" alt="E-commerce Project">
+                    <h4>Project Overview</h4>
+                    <p>Sebuah website e-commerce lengkap dengan berbagai fitur seperti:</p>
+                    <ul>
+                        <li>Katalog produk dengan kategori</li>
+                        <li>Sistem keranjang belanja</li>
+                        <li>Integrasi pembayaran dengan Midtrans</li>
+                        <li>Halaman admin untuk manajemen produk</li>
+                        <li>Responsive design yang bekerja di semua perangkat</li>
+                    </ul>
+                    <h4 class="mt-4">Technologies Used</h4>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-primary">HTML5</span>
+                        <span class="badge bg-primary">CSS3</span>
+                        <span class="badge bg-primary">JavaScript</span>
+                        <span class="badge bg-primary">PHP</span>
+                        <span class="badge bg-primary">MySQL</span>
+                        <span class="badge bg-primary">Bootstrap</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-custom">Visit Website</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 2 Modal -->
+    <div class="modal fade" id="project2Modal" tabindex="-1" aria-labelledby="project2ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project2ModalLabel">Mobile App Design</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="img-fluid rounded mb-4" alt="Mobile App Design">
+                    <h4>Project Overview</h4>
+                    <p>Desain UI/UX untuk aplikasi fitness tracking dengan fitur:</p>
+                    <ul>
+                        <li>Tracking aktivitas harian (langkah, kalori, jarak)</li>
+                        <li>Workout plans dan video tutorial</li>
+                        <li>Progress tracking dengan grafik</li>
+                        <li>Social features untuk berbagi pencapaian</li>
+                        <li>Dark mode dan light mode</li>
+                    </ul>
+                    <h4 class="mt-4">Tools Used</h4>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-primary">Figma</span>
+                        <span class="badge bg-primary">Adobe XD</span>
+                        <span class="badge bg-primary">Photoshop</span>
+                        <span class="badge bg-primary">Illustrator</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-custom">View Prototype</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
