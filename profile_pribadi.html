@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Pribadi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        
+        /* General Styles */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding-top: 56px;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 100px 0;
+}
+
+.section-header {
+    margin-bottom: 50px;
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: rgba(33, 37, 41, 0.95) !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-text h1 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.hero-img {
+    border: 5px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* About Section */
+.about-img {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.about-img:hover {
+    transform: scale(1.03);
+}
+
+/* Skills Section */
+.skill-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+}
+
+.skill-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* Projects Section */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.project-card img {
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.1);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-size: 60%;
+}
+
+/* Contact Section */
+.contact-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+}
+
+.social-icon {
+    color: var(--primary-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--dark-color);
+    transform: translateY(-5px);
+}
+
+/* Footer */
+footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">My-Profile</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6 hero-text">
+                    <h1 class="display-4 fw-bold mb-4">Hi, Aku <span class="text-primary">Lesmana Adhi Kusuma</span></h1>
+                    <p class="lead mb-4">Mahasiswa Teknik Informatika</p>
+                    <div class="d-flex gap-3">
+                        <a href="#projects" class="btn btn-primary btn-lg px-4">View My Work</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-4">Contact Me</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="" 
+                         alt="Profile Image" class="img-fluid rounded-circle hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="About Me" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-7">
+                    <h2 class="fw-bold mb-4">About <span class="text-primary">Me</span></h2>
+                    <p class="lead">I'm an Informatics student passionate about software development and problem-solving.</p>
+                    <p>Currently pursuing my degree at Politeknik Negeri Indramayu, I'm focused on mastering both theoretical concepts and practical applications in computer science. My journey in technology began when I was [your story], and since then I've been constantly learning and growing in this field.</p>
+                    <p>When I'm not coding, you can find me gaming. I believe in continuous learning and sharing knowledge with others.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <strong>Name:</strong> Lesmana Adhi Kusuma
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Degree:</strong> D3 Teknik Informatika
+                                </li>
+                                <li class="mb-2">
+                                    <strong>University:</strong> Politeknik Negeri Indramayu
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <strong>Email:</strong> lesmana24@student.polindra.ac.id
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Location:</strong> Kuningan, Jawa Barat
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Interests:</strong> Web Dev, AI, Data Science
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#educationModal">
+                        View My Education
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Modal -->
+    <div class="modal fade" id="educationModal" tabindex="-1" aria-labelledby="educationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="educationModalLabel">Education Background</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - Present</div>
+                            <div class="timeline-content">
+                                <h6>D3 Teknik Informatika</h6>
+                                <p>Politeknik Negeri Indramayu</p>
+                                <p>GPA: 4.0/4.0</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021 - 2024</div>
+                            <div class="timeline-content">
+                                <h6>High School Diploma</h6>
+                                <p>SMAN 1 Cilimus</p>
+                                <p>Major: Science</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container py-5">
+            <div class="section-header text-center mb-5">
+                <h2 class="fw-bold">My <span class="text-primary">Skills</span></h2>
+                <p class="lead">Here are the technologies and tools I work with</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="skill-item p-4 shadow-sm rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-code fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Programming Languages</h5>
+                        </div>
+                        <div class="skill-bars">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>C++</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>JavaScript</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Python</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="skill-item p-4 shadow-sm rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-laptop-code fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Web Development</h5>
+                        </div>
+                        <div class="skill-bars">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>HTML/CSS</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>React</span>
+                                    <span>65%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Node.js</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="skill-item p-4 shadow-sm rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-database fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Database</h5>
+                        </div>
+                        <div class="skill-bars">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>MySQL</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>MongoDB</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="skill-item p-4 shadow-sm rounded">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-tools fa-2x text-primary me-3"></i>
+                            <h5 class="mb-0">Tools & Others</h5>
+                        </div>
+                        <div class="skill-bars">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Git</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Docker</span>
+                                    <span>50%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Linux</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="section-header text-center mb-5">
+                <h2 class="fw-bold">My <span class="text-primary">Projects</span></h2>
+                <p class="lead">Some of my recent work and academic projects</p>
+            </div>
+            
+            <!-- Projects Carousel -->
+            <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card project-card h-100">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Project 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">E-Commerce Website</h5>
+                                        <p class="card-text">A full-stack e-commerce platform with React frontend and Node.js backend with MongoDB database.</p>
+                                        <div class="tech-used mb-3">
+                                            <span class="badge bg-primary me-1">React</span>
+                                            <span class="badge bg-primary me-1">Node.js</span>
+                                            <span class="badge bg-primary">MongoDB</span>
+                                        </div>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project1Modal">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card project-card h-100">
+                                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Project 2">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Data Analysis Dashboard</h5>
+                                        <p class="card-text">Interactive dashboard for visualizing and analyzing large datasets with Python and Tableau.</p>
+                                        <div class="tech-used mb-3">
+                                            <span class="badge bg-primary me-1">Python</span>
+                                            <span class="badge bg-primary me-1">Pandas</span>
+                                            <span class="badge bg-primary">Tableau</span>
+                                        </div>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project2Modal">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card project-card h-100">
+                                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Project 3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">IoT Home Automation</h5>
+                                        <p class="card-text">Smart home system controlling lights and appliances using Raspberry Pi and custom Android app.</p>
+                                        <div class="tech-used mb-3">
+                                            <span class="badge bg-primary me-1">Python</span>
+                                            <span class="badge bg-primary me-1">Raspberry Pi</span>
+                                            <span class="badge bg-primary">Kotlin</span>
+                                        </div>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project3Modal">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card project-card h-100">
+                                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Project 4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Mobile Game App</h5>
+                                        <p class="card-text">2D puzzle game developed with Unity and C# with online leaderboard functionality.</p>
+                                        <div class="tech-used mb-3">
+                                            <span class="badge bg-primary me-1">Unity</span>
+                                            <span class="badge bg-primary me-1">C#</span>
+                                            <span class="badge bg-primary">Firebase</span>
+                                        </div>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project4Modal">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card project-card h-100">
+                                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Project 5">
+                                    <div class="card-body">
+                                        <h5 class="card-title">University Portal</h5>
+                                        <p class="card-text">Web portal for university students with course registration and grade viewing features.</p>
+                                        <div class="tech-used mb-3">
+                                            <span class="badge bg-primary me-1">PHP</span>
+                                            <span class="badge bg-primary me-1">MySQL</span>
+                                            <span class="badge bg-primary">Bootstrap</span>
+                                        </div>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project5Modal">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card project-card h-100">
+                                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" class="card-img-top" alt="Project 6">
+                                    <div class="card-body">
+                                        <h5 class="card-title">AI Chatbot</h5>
+                                        <p class="card-text">Natural language processing chatbot for customer service using Python and TensorFlow.</p>
+                                        <div class="tech-used mb-3">
+                                            <span class="badge bg-primary me-1">Python</span>
+                                            <span class="badge bg-primary me-1">NLP</span>
+                                            <span class="badge bg-primary">TensorFlow</span>
+                                        </div>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project6Modal">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project1ModalLabel">E-Commerce Website</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid mb-4" alt="Project 1">
+                    <p>This full-stack e-commerce platform was developed as a capstone project for my web development course. It includes:</p>
+                    <ul>
+                        <li>User authentication and authorization</li>
+                        <li>Product catalog with search and filtering</li>
+                        <li>Shopping cart functionality</li>
+                        <li>Checkout process with payment integration</li>
+                        <li>Admin dashboard for product management</li>
+                    </ul>
+                    <p><strong>Technologies Used:</strong> React, Node.js, Express, MongoDB, Redux, Stripe API</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary">View Live Demo</a>
+                    <a href="#" class="btn btn-outline-secondary">GitHub Repository</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other project modals would follow the same pattern -->
+    <!-- I'm including just one as an example to keep the code manageable -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="section-header text-center mb-5">
+                <h2 class="fw-bold">Get In <span class="text-primary">Touch</span></h2>
+                <p class="lead">Feel free to contact me for opportunities or collaborations</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="contact-info">
+                        <div class="contact-item d-flex mb-4">
+                            <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p>Kuningan, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <div class="contact-item d-flex mb-4">
+                            <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>lesmana24@student.polindra.ac.id</p>
+                            </div>
+                        </div>
+                        <div class="contact-item d-flex mb-4">
+                            <div class="icon-box bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+6285934393336</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links mt-5">
+                        <h5 class="mb-3">Connect With Me</h5>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="social-icon"><i class="fab fa-github fa-2x"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin fa-2x"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter fa-2x"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Lesmana Adhi Kusuma. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
