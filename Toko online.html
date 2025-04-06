@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Online</title>
+  <style>
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px;
+      width: 250px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .price {
+      color: green;
+      font-weight: bold;
+    }
+    .filter-buttons {
+      margin: 20px 0;
+    }
+    .filter-buttons button {
+      padding: 8px 15px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Toko Online Kami</h1>
+  
+  <div class="filter-buttons">
+    <button id="filter-semua">Semua Produk</button>
+    <button id="filter-elektronik">Elektronik</button>
+    <button id="filter-fashion">Fashion</button>
+  </div>
+  
+  <div id="product-container"></div>
+  
+  <script>
+    // Array data produk
+const products = [
+  {
+    id: 1,
+    name: "Laptop Gaming",
+    price: 12000000,
+    description: "Laptop gaming dengan GPU RTX 3060 dan prosesor i7",
+    image: "laptop.jpg",
+    category: "elektronik"
+  },
+  {
+    id: 2,
+    name: "Smartphone Flagship",
+    price: 8000000,
+    description: "Smartphone dengan kamera 108MP dan baterai 5000mAh",
+    image: "smartphone.jpg",
+    category: "elektronik"
+  },
+  {
+    id: 3,
+    name: "T-shirt Casual",
+    price: 150000,
+    description: "Kaos katun nyaman untuk sehari-hari",
+    image: "tshirt.jpg",
+    category: "fashion"
+  },
+  {
+    id: 4,
+    name: "Sepatu Sneakers",
+    price: 500000,
+    description: "Sepatu sneakers trendy dengan sol yang nyaman",
+    image: "sneakers.jpg",
+    category: "fashion"
+  }
+];
+
+// Fungsi untuk menampilkan produk
+function displayProducts(productsToDisplay) {
+  const productContainer = document.getElementById('product-container');
+  productContainer.innerHTML = ''; // Kosongkan container sebelum menambahkan produk baru
+  
+  productsToDisplay.forEach(product => {
+    const productElement = document.createElement('div');
+    productElement.className = 'product';
+    productElement.innerHTML = `
+      <img src="images/${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p class="price">Rp ${product.price.toLocaleString('id-ID')}</p>
+      <p class="description">${product.description}</p>
+      <p class="category">Kategori: ${product.category}</p>
+    `;
+    productContainer.appendChild(productElement);
+  });
+}
+
+// Panggil fungsi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+  displayProducts(products);
+});
+
+// Fungsi untuk memfilter produk
+function filterProducts(category) {
+  if (category === 'semua') {
+    displayProducts(products);
+  } else {
+    const filteredProducts = products.filter(product => product.category === category);
+    displayProducts(filteredProducts);
+  }
+}
+
+// Tambahkan event listener untuk tombol filter
+document.addEventListener('DOMContentLoaded', () => {
+  // Panggil untuk menampilkan semua produk pertama kali
+  displayProducts(products);
+  
+  // Tambahkan event listener untuk tombol filter
+  document.getElementById('filter-semua').addEventListener('click', () => filterProducts('semua'));
+  document.getElementById('filter-elektronik').addEventListener('click', () => filterProducts('elektronik'));
+  document.getElementById('filter-fashion').addEventListener('click', () => filterProducts('fashion'));
+});
+
+  </script>
+</body>
+</html>
