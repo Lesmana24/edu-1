@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "material-theme",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editorAssociations": {
+        "*.js": "default"
+    },
+    "editor.formatOnSave": true,
+}w
