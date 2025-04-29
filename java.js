@@ -44,3 +44,4 @@ usia = prompt("Masukkan usia anda : ");
 kota = prompt("Masukkan kota anda : ");
 
 alert(`Nama saya adalah ${nama}, saya berusia ${usia} tahun, dan saya tinggal di ${kota}.`); // Menggunakan template literal untuk menampilkan hasil
+

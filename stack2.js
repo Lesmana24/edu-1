@@ -35,3 +35,4 @@ for (let i = 0; i < max; i++) {
 console.log("Stack: " + stack)
 console.log("Panjang Data: " + stack.length)
 console.log(stack)
+push(21)
