@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContohController;
+use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return 'Route UTAMA';
 });
@@ -17,3 +18,7 @@ Route::get('/cart', function () {
 Route::get('/checkout', function () {
     return 'Route checkout';
 });
+
+Route::get('/contoh', [ContohController::class, 'index']);
+
+Route::resource('products-resource',ProductController::class);
