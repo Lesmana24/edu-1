@@ -16,4 +16,13 @@ class ContohController extends Controller
         // ]);
         return view('contoh', compact('products', 'title'));
     }
+
+    public function coba()
+    {
+        $title = 'Belajar Blade';
+        $ifLogin = false;
+        $products = ['Laptop', 'Keyboard', 'Mouse'];
+        return view ('coba', compact('title','ifLogin', 'products'));
+
+        }
 }

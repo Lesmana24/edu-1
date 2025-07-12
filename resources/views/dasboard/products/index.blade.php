@@ -6,3 +6,4 @@
 <p>Anda dapat mengelola produk melalui halaman ini.</p>
 <p>Silakan gunakan menu navigasi untuk mengakses fitur lainnya.</p>
 @endsection
+

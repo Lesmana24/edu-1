@@ -24,3 +24,7 @@
 @endforeach
 </ol>
 @endsection
+
+<x-alert>
+    <p>Teks Alert</p>
+</x-alert>
