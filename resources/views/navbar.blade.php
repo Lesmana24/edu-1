@@ -1,4 +1,3 @@
-<!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -10,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Beranda</a>
+                        <a class="nav-link" href="/">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Produk</a>
